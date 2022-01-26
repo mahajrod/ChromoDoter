@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 
 #matplotlib.use('Agg')
-#os.environ['MPLCONFIGDIR'] = '/tmp/'
 
 import matplotlib.pyplot as plt
 plt.ioff()
