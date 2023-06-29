@@ -28,11 +28,10 @@ def get_list_of_files(list_of_dirs_and_files, expression=None, recursive=True):
     return file_list
 
 
-dependencies = ['scipy', 'numpy', 'pandas', 'matplotlib', 'venn']
-                #'biopython', 'xmltodict', 'bcbio-gff', 'statsmodels', 'xlsxwriter', 'ete3']
+dependencies = ['numpy', 'pandas', 'matplotlib']
 
 setup(name='ChromoDoter',
-      version='0.2',
+      version='0.3',
       packages=find_packages(),
       author='Sergei F. Kliver',
       author_email='mahajrod@gmail.com',

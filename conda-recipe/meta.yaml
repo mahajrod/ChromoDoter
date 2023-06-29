@@ -1,6 +1,6 @@
 package:
   name: "chromodoter"
-  version: "0.2"
+  version: "0.3"
 about:
   summary: "Chromodoter - tool to draw dotplots "
 source:
@@ -10,19 +10,14 @@ requirements:
     - python {{ python }}
     - pip
     - setuptools
-    - scipy
     - numpy
     - pandas
     - matplotlib
-    - venn
   run:
     - python
-    - scipy
     - numpy
     - pandas
     - matplotlib
-    - venn
-
 
 build:
   script: python setup.py install
