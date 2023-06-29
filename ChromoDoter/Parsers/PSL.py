@@ -20,10 +20,12 @@ class CollectionPSL:
                  query_black_list=None, query_white_list=None,
                  target_syn_dict=None, query_syn_dict=None,
                  min_target_hit_len=None, min_query_hit_len=None,
-                 min_target_len=None, min_query_len=None, keep_seq_length_in_df=False):
+                 min_target_len=None, min_query_len=None, keep_seq_length_in_df=False,
+                 invert_coordinates_for_target_negative_strand=False):
 
         self.formats = ["psl"]
         self.PSL_COLS = AlignmentFormats.ALN_FMT_COLS["psl"]
+        self.invert_coordinates_for_target_negative_strand = invert_coordinates_for_target_negative_strand
         self.parsing_parameters = {
             "psl": {
                 "coordinates_only": {
@@ -219,7 +221,10 @@ class CollectionPSL:
         print("%s\tFiltering finished..." % str(datetime.datetime.now()))
         self.records["strand"].replace({"++": "+", "+-": "-"}, inplace=True)
         # convert target coordinates to forward strand, where necessary
-        self.records.loc[self.records["strand"] == "-", "tStart"], self.records.loc[self.records["strand"] == "-", "tEnd"] = self.records.loc[self.records["strand"] == "-", "tSize"] - self.records.loc[self.records["strand"] == "-", "tEnd"], self.records.loc[self.records["strand"] == "-", "tSize"] - self.records.loc[self.records["strand"] == "-", "tStart"]
+        if self.invert_coordinates_for_target_negative_strand:
+            self.records.loc[self.records["strand"] == "-", "tStart"], \
+             self.records.loc[self.records["strand"] == "-", "tEnd"] = self.records.loc[self.records["strand"] == "-", "tSize"] - self.records.loc[self.records["strand"] == "-", "tEnd"], \
+                                                                       self.records.loc[self.records["strand"] == "-", "tSize"] - self.records.loc[self.records["strand"] == "-", "tStart"]
 
         if min_target_len and min_query_len:
             self.records = self.records[

@@ -159,6 +159,10 @@ parser.add_argument("--tick_step", action="store", dest="tick_step",
 parser.add_argument("--tick_unit", action="store", dest="tick_unit",
                     default=1000000, type=int,
                     help="Scaffold length tick unit. Default: 1 000 000, i.e. Mbp")
+parser.add_argument("--invert_coordinates_for_target_negative_strand", action="store_true",
+                    dest="invert_coordinates_for_target_negative_strand",
+                    default=False,
+                    help="Invert coordinates for target negative strand. Default: False")
 
 args = parser.parse_args()
 
@@ -219,7 +223,8 @@ elif args.format == "psl":
                                     query_black_list=query_black_list,
                                     query_syn_dict=query_syn_dict,
                                     target_syn_dict=target_syn_dict,
-                                    format=args.format
+                                    format=args.format,
+                                    invert_coordinates_for_target_negative_strand=args.invert_coordinates_for_target_negative_strand
                                     )
 
 DrawingRoutines.draw_dot_plot_from_last_alignment(last_collection,
