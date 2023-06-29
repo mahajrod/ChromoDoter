@@ -10,7 +10,7 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 
-import RouToolPa.Formats.AlignmentFormats as AlignmentFormats
+import ChromoDoter.Formats.AlignmentFormats as AlignmentFormats
 
 
 class CollectionPSL:

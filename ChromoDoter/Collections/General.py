@@ -7,6 +7,15 @@ if sys.version_info[0] == 3:
     from io import TextIOWrapper as file
 
 
+def check_path(path_to_check):
+    #print (path_to_check)
+    #returns path with / at end or blank path
+    if path_to_check != "":
+        if path_to_check[-1] != "/":
+            return path_to_check + "/"
+    return path_to_check
+
+
 class TwoLvlDict(OrderedDict):
 
     def __init__(self, dictionary=None, input_file=None, column_sep="\t", value_sep=",",
@@ -121,7 +130,6 @@ class TwoLvlDict(OrderedDict):
                 out_fd.write(self.table_form(absent_symbol=absent_symbol, sort=sort))
 
     def write_splited(self, out_dir="./", extension="t", value_separator=","):
-        from RouToolPa.GeneralRoutines.File import check_path
         for fl_key in self:
             with open("%s%s.%s" % (check_path(out_dir), fl_key, extension), "w") as out_fd:
                 for sl_key in self[fl_key]:

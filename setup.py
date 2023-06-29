@@ -32,7 +32,7 @@ dependencies = ['scipy', 'numpy', 'pandas', 'matplotlib', 'venn']
                 #'biopython', 'xmltodict', 'bcbio-gff', 'statsmodels', 'xlsxwriter', 'ete3']
 
 setup(name='ChromoDoter',
-      version='0.1',
+      version='0.2',
       packages=find_packages(),
       author='Sergei F. Kliver',
       author_email='mahajrod@gmail.com',
